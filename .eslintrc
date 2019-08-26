@@ -1,0 +1,28 @@
+{
+  "root": true,
+  "extends": "eslint:recommended",
+  "env": {
+    "browser": true,
+    "jquery": true,
+    "webextensions": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "impliedStrict": true
+    }
+  },
+  "globals": {
+    "WeavyWidget": true,
+    "_": true,
+    "helper": true,
+    "network": true,
+    "windows": true
+  },
+  "rules": {
+    "eqeqeq": [ 2, "allow-null" ],
+    "no-unused-vars": [1, {"vars": "local", "args": "none"}],
+    "no-console": 0,
+    "no-empty": [2, {"allowEmptyCatch": true}]
+  }
+}

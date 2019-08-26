@@ -1,0 +1,137 @@
+html {
+    font-size: 16px;
+    background-color: transparent;
+}
+
+body, .nav-tabs .nav-link.active {
+    background-color: transparent;
+}
+
+#signup-frame {
+    border: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#settings {
+    margin: 0.5rem 1rem;
+}
+
+.alerts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: .5rem;
+    z-index: 1051;
+    pointer-events: none;
+}
+
+    .alerts .alert {
+        max-width: 540px;
+        pointer-events: all;
+    }
+
+.waiting {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, .6);
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+    .waiting img {
+        width: 60px;
+        margin-bottom: 40px;
+        opacity: 1;
+    }
+
+.form-buttons {
+    margin: 1.5rem 0;
+}
+
+body.options {
+    margin-top: 1.5rem;
+    height: auto;
+    /*width: 600px;*/
+    overflow-x: hidden;
+}
+
+    body.options table {
+        table-layout: fixed;
+        word-wrap: break-word;
+    }
+
+.table.disabled th {
+    border-top: 0;
+    margin-top: .5rem;
+}
+
+body.options td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+    body.options th:nth-child(2), body.options td:nth-child(2) {
+        width: 105px;
+    }
+
+    body.options td .name {
+        font-weight: bold;
+    }
+
+    body.options td button {
+        float: right;
+    }
+
+body.menu .dropdown-menu {
+    width: 200px;
+    position: relative;
+    display: block;
+    float: none;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+
+#settings .form-group {
+    position: relative;
+}
+
+.validation-status {
+    display: none;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 6px;
+    top: 4px;
+    background-color: transparent;
+    background-size: 25px 25px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+    .validation-status.validating {
+        display: block;
+        background-image: url(/images/spinner.svg);
+    }
+
+    .validation-status.valid {
+        display: block;
+        background-image: url(/images/check.svg);
+    }
+
+    .validation-status.invalid {
+    }
