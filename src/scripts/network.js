@@ -13,7 +13,6 @@ var network = (function () {
         return _legacy ? "/javascript/widget.js" : "/javascript/weavy.extended.bundle.min.js";
     };
 
-
     /**
     * sync scripts from Weavy
     */

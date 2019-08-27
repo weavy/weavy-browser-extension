@@ -91,30 +91,6 @@ chrome.runtime.onMessage.addListener(
 );
 
 /**
-* listens to clicks on the browseraction icon
-* https://developer.chrome.com/extensions/browserAction
-*/
-chrome.browserAction.onClicked.addListener((tab) => {
-    chrome.storage.local.get({
-        url: null
-    }, function (settings) {
-        if (chrome.runtime.lastError) {
-            console.warn("Error: " + chrome.runtime.lastError.message);
-        } else {
-            if (settings.url) {
-                // removes / adds current domain to disabled list
-                var hostname = new URL(tab.url).hostname.toLowerCase();
-                helper.upsertDisabled(hostname);
-            } else {
-                var width = 610;
-                var height = 730;
-                windows.create("signup", "signup.html", "popup", width, height, Math.round(Math.max(screen.availHeight - height, 0) / 2), Math.round(Math.max(screen.availWidth - width, 0) / 2));
-            }
-        }
-    });
-});
-
-/**
 * disable the browser action while loading, enable it when page is loaded if applicable
 * https://developer.chrome.com/extensions/webNavigation
 */
