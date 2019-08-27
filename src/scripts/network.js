@@ -1,4 +1,4 @@
-/*! Copyright 2018 Incentive Inc. All rights reserved. */
+/*! Copyright 2019 Incentive Inc. All rights reserved. */
 
 var network = (function () {
 

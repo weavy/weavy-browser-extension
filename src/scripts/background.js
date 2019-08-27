@@ -1,4 +1,4 @@
-/*! Copyright 2018 Incentive Inc. All rights reserved. */
+/*! Copyright 2019 Incentive Inc. All rights reserved. */
 
 /**
 * Since chrome 73 there is problem accessing application/json content from cross origin - our signalr request gets blocked by CORB.
@@ -35,6 +35,14 @@ chrome.webRequest.onHeadersReceived.addListener(details => {
     }
     return { responseHeaders: headers };
 }, { urls: ["<all_urls>"] }, ["blocking", "extraHeaders", "responseHeaders"]);
+
+/**
+* listens to clicks on the browseraction icon
+* https://developer.chrome.com/extensions/browserAction
+*/
+chrome.browserAction.onClicked.addListener((tab) => {
+    // this could be a good place to show/hide the Weavy drop-in UI.
+});
 
 /**
 * responds to messages from other windows
