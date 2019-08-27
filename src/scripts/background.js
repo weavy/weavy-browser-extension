@@ -17,16 +17,16 @@ chrome.webRequest.onHeadersReceived.addListener(details => {
     var docCSP = headers.find(header => header.name.toLowerCase() === "content-security-policy");
 
     if (isDoc && docCSP) {
-      var policys = docCSP.value.split("; ");
-      var pUrl = wUrl.match(/^https?:\/\/(.+)(?:\/|$)/)[1];
+        var policys = docCSP.value.split("; ");
+        var pUrl = wUrl.match(/^https?:\/\/(.+)(?:\/|$)/)[1];
 
-      docCSP.value = policys.map(policy => {
-        if (/^(connect-src|frame-src|img-src|media-src|script-src|style-src)/.test(policy)) {
-          policy = policy.split("'none'").join('').trim();
-          policy += " " + pUrl;
-        }
-        return policy;
-      }).join("; ")
+        docCSP.value = policys.map(policy => {
+            if (/^(connect-src|frame-src|img-src|media-src|script-src|style-src)/.test(policy)) {
+                policy = policy.split("'none'").join('').trim();
+                policy += " " + pUrl;
+            }
+            return policy;
+        }).join("; ")
     }
 
     if (isSignalR) {
@@ -41,7 +41,9 @@ chrome.webRequest.onHeadersReceived.addListener(details => {
 * https://developer.chrome.com/extensions/browserAction
 */
 chrome.browserAction.onClicked.addListener((tab) => {
-    // this could be a good place to show/hide the Weavy drop-in UI.
+    // removes / adds current domain to disabled list
+    var hostname = new URL(tab.url).hostname.toLowerCase();
+    helper.upsertDisabled(hostname);
 });
 
 /**
@@ -159,7 +161,7 @@ chrome.webNavigation.onDOMContentLoaded.addListener(function (e) {
                         console.warn("Error: " + chrome.runtime.lastError.message);
                     } else {
                         // enable button
-                        helper.updateIcon(true, "Weavy", tab.id);
+                        helper.updateIcon(true, helper.getProductName(), tab.id);
 
                         // exit - not configured
                         if (helper.getWeavyUrl().length === 0) {
@@ -192,7 +194,7 @@ chrome.webNavigation.onDOMContentLoaded.addListener(function (e) {
                             helper.updateIcon(false, "Disabled here - click to enable", tab.id);
                             return;
                         } else {
-                            helper.updateIcon(true, "Weavy", tab.id);
+                            helper.updateIcon(true, helper.getProductName(), tab.id);
                         }
 
                         // Weavy should be loaded - inject script snippet

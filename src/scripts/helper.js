@@ -2,9 +2,13 @@
 
 var helper = (function () {
 
-    /* TODO: Enter the url to your Weavy installation e.i. https://weavy.company.com */
+    /* TODO: 
+     * Enter the url to your Weavy installation e.i. https://weavy.company.com */
     var _weavyUrl = "https://hq.weavycloud.com";
 
+    /* TODO:
+     * Enter the name of your product */
+    var _productName = "Weavy";
     /**
     * injects the script snippet using content scripts
     * https://developer.chrome.com/extensions/content_scripts
@@ -186,11 +190,19 @@ var helper = (function () {
         return _weavyUrl;
     }
 
+    /**
+     * get product name
+     */
+    function getProductName() {
+        return _productName;
+    }
+
     return {
         upsertDisabled: upsertDisabled,
         updateIcon: updateIcon,
         injectScript: injectScript,
         isValidUrl: isValidUrl,
-        getWeavyUrl: getWeavyUrl
+        getWeavyUrl: getWeavyUrl,
+        getProductName: getProductName
     };
 })();
