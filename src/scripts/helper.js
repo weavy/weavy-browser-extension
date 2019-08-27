@@ -2,11 +2,11 @@
 
 var helper = (function () {
 
-    /* TODO: 
+    /* REQUIRED 
      * Enter the url to your Weavy installation e.i. https://weavy.company.com */
     var _weavyUrl = "https://hq.weavycloud.com";
 
-    /* TODO:
+    /* OPTIONAL
      * Enter the name of your product */
     var _productName = "Weavy";
     /**
