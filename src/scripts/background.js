@@ -1,6 +1,19 @@
 /*! Copyright 2019 Incentive Inc. All rights reserved. */
 
 /**
+* fires when extension is installed
+* https://developer.chrome.com/extensions/runtime#event-onInstalled
+*/
+chrome.runtime.onInstalled.addListener(function () {
+    if (chrome.runtime.lastError) {
+        console.warn("Error: " + chrome.runtime.lastError.message);
+    } else {
+        // sync when install or upgrade
+        network.sync(function () { });
+    }
+});
+
+/**
 * Since chrome 73 there is problem accessing application/json content from cross origin - our signalr request gets blocked by CORB.
 * Solved by adding access-control-allow-origin:* for our signalr requests.
 * See: https://bugs.chromium.org/p/chromium/issues/detail?id=933893, https://www.chromestatus.com/feature/5629709824032768, https://stackoverflow.com/questions/54786635/how-to-avoid-cross-origin-read-blockingcorb-in-a-chrome-web-extension
